@@ -1,4 +1,4 @@
-# PPG Reconstruction Biometrics (Reconstruction Error)
+# ppg_reconstruction_biometrics_verify
 
 This repository accompanies the paper **"Reconstruction Error as a Biometric Signature: Autoencoder and Diffusion Approaches on PPG Signals"**.
 
