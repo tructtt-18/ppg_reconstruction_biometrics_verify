@@ -1,16 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-"""
-This module is adapted from the provided dataset preprocessing notebooks:
-- Official_PPGDalia-dataprocessing.ipynb
-- Official_Scientisst-dataprocessing.ipynb
-
-It provides dataset split + windowing utilities used by the experiments.
-"""
-
-from __future__ import annotations
-
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 
@@ -96,10 +83,6 @@ def all_equal(data):
 
 
 def label_maker_Dalia(data_ppg, data_activity):
-    ''' Takes both ppg and activity window data to label the activity signal / 
-    This function removes the activity window with not equal data point in the window
-    besides the corosponding ppg window data and label the ppg window based on the activity window '''
-
     labels_activity = []
     Not_Equal_id = []
     for i in range(data_activity.shape[0]):
@@ -205,8 +188,6 @@ with open('ppg-dalia_config.json') as config_file:
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 
-#########################
-#########################
 #########################
 
 # Load data using parameters from config
@@ -363,7 +344,6 @@ def load_and_preprocess_data(config, id_data, scaler=None, fit_scaler=True, remo
        
         passband_filter = FrequencyDomainFilter(FrequencyResponse.FIR, BandType.BANDPASS, (low_freq, high_freq), order=filter_order)  # design the filter
         filtered_data = passband_filter(left_wrist_ppg).to_array().squeeze()
-        print("👉 Số lượng NaN trong filtered_data:", np.isnan(filtered_data).sum())
 
         if np.isnan(filtered_data).any():
             nan_mask = np.isnan(filtered_data)
