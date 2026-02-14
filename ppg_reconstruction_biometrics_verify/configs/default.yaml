@@ -1,0 +1,4 @@
+model:
+  type: tcn
+dataset:
+  save_dir: "./data/processed"
